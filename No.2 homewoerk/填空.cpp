@@ -13,17 +13,17 @@ void get_twodim(twodim &s, int row, int col)
 {
     s.r = raw;
     s.c = col;
-    s.a = new float[row*col];
+    s.a = new float[row * col];
 }
 
 float &val(twodim &s, int i, int j)
 {
-    return *(s.a+i*s.c+j);
+    return *(s.a + i * s.c + j);
 }
 
 void free_twodim(twodim &s)
 {
-    delete []s.a;
+    delete[] s.a;
 }
 
 void main(void)
