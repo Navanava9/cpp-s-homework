@@ -11,23 +11,19 @@ struct twodim
 
 void get_twodim(twodim &s, int row, int col)
 {
-    twodim **x = new twodim[row][col];
-    for (int i = 0; i < row; i++)
-        for (int j = 0; j < col; j++)
-        {
-            twodim *x = new twodim;
-            x->a = 0;
-            x->r = i;
-            x->c = j;
-        }
+    s.r = raw;
+    s.c = col;
+    s.a = new float[row*col];
 }
 
 float &val(twodim &s, int i, int j)
 {
+    return *(s.a+i*s.c+j);
 }
 
 void free_twodim(twodim &s)
 {
+    delete []s.a;
 }
 
 void main(void)
