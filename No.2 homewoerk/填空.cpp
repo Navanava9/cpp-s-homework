@@ -11,7 +11,7 @@ struct twodim
 
 void get_twodim(twodim &s, int row, int col)
 {
-    s.r = raw;
+    s.r = row;
     s.c = col;
     s.a = new float[row * col];
 }
