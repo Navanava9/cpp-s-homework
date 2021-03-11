@@ -8,7 +8,7 @@ void PrintCalendar(int day, int stop)
     cout << setw((1 + day) * 5) << 1;
     for (int i = 2; i <= stop; i++)
     {
-        if (day == 6)
+        if (day == 6 && i == 2)
             cout << endl;
         cout << setw(5) << i;
         if (i == 7 - day || i == 14 - day || i == 21 - day || i == 28 - day || i == 35 - day)
