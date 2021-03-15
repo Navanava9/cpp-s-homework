@@ -25,4 +25,5 @@ int main(void)
     }
     else
         print(str);
+    return 0;
 }
