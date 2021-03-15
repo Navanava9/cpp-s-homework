@@ -26,7 +26,7 @@ void free_twodim(twodim &s)
     delete[] s.a;
 }
 
-void main(void)
+int main(void)
 {
     struct twodim s;
     int i, j;
@@ -34,7 +34,7 @@ void main(void)
 
     for (i = 0; i < 3; i++)
         for (j = 0; j < 4; j++)
-            val(s, i, j);
+            val(s, i, j)=5;
 
     for (i = 0; i < 3; i++)
     {
