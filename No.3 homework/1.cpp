@@ -6,23 +6,39 @@ using namespace std;
 class Circle
 {
 private:
-    int radius;
+    float radius;
 
 public:
-    Circle(int);
+    Circle();
+    Circle(float);
     ~Circle();
-    inline float area(int r)
+    float area()
     {
-        return r * r * 2 * PI;
+        return radius * radius * PI;
+    }
+    void displayarea()
+    {
+        cout << endl
+             << "Area is " << area() << endl;
+    }
+    void setR(float r)
+    {
+        radius = r;
     }
 };
 
-Circle::Circle(int r)
+Circle::Circle()
+{
+    cout << "Constructor is called! ";
+    radius = 0;
+}
+
+Circle::Circle(float r)
 {
     radius = r;
     cout << "Constructor is called! ";
     cout << "( r = " << radius << " )" << endl;
-    cout << "Area is " << area(radius) << endl;
+    cout << "Area is " << area() << endl;
 }
 
 Circle::~Circle()
@@ -32,6 +48,8 @@ Circle::~Circle()
 
 int main(void)
 {
-    Circle p(2);
+    Circle p;
+    p.setR(5);
+    p.displayarea();
     return 0;
 }
