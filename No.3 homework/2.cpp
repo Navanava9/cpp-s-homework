@@ -19,7 +19,8 @@ public:
     bool IsEmpty();
     bool IsFull();
     void Push(int e);
-    int Pop(int &e);
+    int Pop();
+    void Traverse();
 };
 
 Queue::Queue(int n)
@@ -29,7 +30,7 @@ Queue::Queue(int n)
     if (!base)
         exit(OVERFLOW);
     front = rear = 0;
-    cout << "构造函数使用完毕" << endl;
+    cout << "Use the constructor" << endl;
 }
 
 Queue::~Queue()
@@ -39,7 +40,7 @@ Queue::~Queue()
     base = NULL;
     front = rear = 0;
     cout << endl
-         << "析构函数使用完毕" << endl;
+         << "The destructor after use" << endl;
 }
 
 bool Queue::IsEmpty()
@@ -66,8 +67,9 @@ void Queue::Push(int e)
     rear = (rear + 1) % num;
 }
 
-int Queue::Pop(int &e)
+int Queue::Pop()
 {
+    int e;
     if (front == rear)
         return ERROR;
     e = base[front];
@@ -75,8 +77,22 @@ int Queue::Pop(int &e)
     return e;
 }
 
+void Queue::Traverse()
+{
+    for (int i = front; i < rear; i++)
+        cout << base[i] << ' ';
+}
+
 int main(void)
 {
     Queue p(10);
+    int a[5] = {1, 2, 4, 6, 7};
+    for (int i = 0; i < 5; i++)
+        p.Push(a[i]);
+    p.Traverse();
+    int e = p.Pop();
+    cout << endl
+         << "(" << e << ")" << endl;
+    p.Traverse();
     return 0;
 }
