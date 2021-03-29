@@ -64,7 +64,7 @@ void Set::delete_(int n)
         {
             for (int j = i; j < num - 1; j++)
                 set[j] = set[j + 1];
-            set[num - 1] = NULL;
+            set[num - 1] = '\0';
         }
         num--;
     }
@@ -123,16 +123,9 @@ Set Set::chaji(Set a, Set b)
 int main(void)
 {
     Set a;
-    int x, n = 0;
-    cout << "('#' is final char)type ur Set:";
-    while (1)
-    {
-        cin >> x;
-        a.add(x);
-        if (x = '#')
-            break;
-        n++;
-    }
+    int x[3] = {1, 3, 7};
+    for (int i = 0; i < 3; i++)
+        a.add(x[i]);
     a.display();
     return 0;
 }
