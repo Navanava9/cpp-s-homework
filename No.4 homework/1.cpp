@@ -122,6 +122,17 @@ Set Set::chaji(Set a, Set b)
 
 int main(void)
 {
-
+    Set a;
+    int x, n = 0;
+    cout << "('#' is final char)type ur Set:";
+    while (1)
+    {
+        cin >> x;
+        a.add(x);
+        if (x = '#')
+            break;
+        n++;
+    }
+    a.display();
     return 0;
 }
