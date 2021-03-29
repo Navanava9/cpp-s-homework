@@ -86,9 +86,17 @@ void Queue::Traverse()
 int main(void)
 {
     Queue p(10);
-    int a[5] = {1, 2, 4, 6, 7};
-    for (int i = 0; i < 5; i++)
+
+    cout << p.IsEmpty() << endl;
+    cout << p.IsFull() << endl;
+
+    int a[10] = {1, 2, 4, 6, 7, 4, 6, 7, 8, 3};
+    for (int i = 0; i < 10; i++)
         p.Push(a[i]);
+
+    cout << p.IsEmpty() << endl;
+    cout << p.IsFull() << endl;
+    
     p.Traverse();
     int e = p.Pop();
     cout << endl
