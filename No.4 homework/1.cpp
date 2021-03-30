@@ -47,26 +47,21 @@ void Set::add(int n)
 
 void Set::delete_(int n)
 {
+    int flag = 0;
     for (int i = 0; i < num; i++)
-    {
-        int flag = 0;
-        if (set[i] == n)
-            flag++;
-        if (flag == 1)
-        {
-            cout << "cant find!" << endl;
-            return;
-        }
-    }
-    for (int i = 0; i < num; i++)
-    {
         if (set[i] == n)
         {
+            flag = 1;
             for (int j = i; j < num - 1; j++)
                 set[j] = set[j + 1];
             set[num - 1] = '\0';
+            num--;
+            break;
         }
-        num--;
+    if (flag == 0)
+    {
+        cout << "Cont find!" << endl;
+        return;
     }
 }
 
@@ -75,7 +70,8 @@ void Set::display()
     cout << "set = { ";
     for (int i = 0; i < num; i++)
         cout << set[i] << ' ';
-    cout << "}" << endl;
+    cout << "}"
+         << " (" << num << ")" << endl;
 }
 
 Set Set::jiaoji(Set a, Set b)
@@ -122,9 +118,16 @@ Set Set::chaji(Set a, Set b)
 
 int main(void)
 {
-    Set a;
+    Set a, b, c;
     for (int i = 1; i < 5; i++)
         a.add(i);
+    for (int j = 3; j < 7; j++)
+    {
+        b.add(j);
+    }
+    c = Set::jiaoji(a, b);
     a.display();
+    b.display();
+    c.display();
     return 0;
 }
