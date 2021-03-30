@@ -139,6 +139,7 @@ int main(void)
         b.add(j);
     }
     c.chaji(a, b);
+    a.add(5);
     a.display();
     b.display();
     c.display();
