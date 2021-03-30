@@ -82,40 +82,51 @@ void Set::jiaoji(Set a, Set b)
             if (a.set[i] == b.set[j])
             {
                 set[k] = a.set[i];
+                num++;
                 k++;
             }
 }
 
-Set Set::binji(Set a, Set b)
+void Set::binji(Set a, Set b)
 {
-    Set c;
+    int m = 0;
     for (int i = 0; i < a.num; i++)
-        c.add(a.set[i]);
+    {
+        set[m] = a.set[i];
+        num++;
+        m++;
+    }
     for (int j = 0; j < b.num; j++)
     {
         int flag = 0;
         for (int k = 0; k < a.num; k++)
             if (b.set[j] == a.set[k])
-                flag++;
-        if (flag == 1)
-            c.add(b.set[j]);
+                flag = 1;
+        if (flag == 0)
+        {
+            set[m] = b.set[j];
+            num++;
+            m++;
+        }
     }
-    return c;
 }
 
-Set Set::chaji(Set a, Set b)
+void Set::chaji(Set a, Set b)
 {
-    Set c;
+    int m = 0;
     for (int j = 0; j < a.num; j++)
     {
         int flag = 0;
         for (int k = 0; k < b.num; k++)
             if (a.set[j] == b.set[k])
-                flag++;
+                flag = 1;
         if (flag == 0)
-            c.add(b.set[j]);
+        {
+            set[m] = a.set[j];
+            num++;
+            m++;
+        }
     }
-    return c;
 }
 
 int main(void)
@@ -127,7 +138,8 @@ int main(void)
     {
         b.add(j);
     }
-    c.a.display();
+    c.chaji(a, b);
+    a.display();
     b.display();
     c.display();
     return 0;
