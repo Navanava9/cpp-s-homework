@@ -15,9 +15,9 @@ public:
     void delete_(int);
     void display();
 
-    Set jiaoji(Set, Set);
-    Set binji(Set, Set);
-    Set chaji(Set, Set);
+    void jiaoji(Set, Set);
+    void binji(Set, Set);
+    void chaji(Set, Set);
 };
 
 Set::Set()
@@ -74,14 +74,16 @@ void Set::display()
          << " (" << num << ")" << endl;
 }
 
-Set Set::jiaoji(Set a, Set b)
+void Set::jiaoji(Set a, Set b)
 {
-    Set c;
+    int k = 0;
     for (int i = 0; i < a.num; i++)
         for (int j = 0; j < b.num; j++)
             if (a.set[i] == b.set[j])
-                c.add(a.set[i]);
-    return c;
+            {
+                set[k] = a.set[i];
+                k++;
+            }
 }
 
 Set Set::binji(Set a, Set b)
@@ -125,8 +127,7 @@ int main(void)
     {
         b.add(j);
     }
-    c = Set::jiaoji(a, b);
-    a.display();
+    c.a.display();
     b.display();
     c.display();
     return 0;
