@@ -93,7 +93,7 @@ set set::chaji(set t)
 	return s;
 }
 
-void main()
+int main(void)
 {
 	set s1, s2, s3;
 	s1.add(12);
@@ -103,6 +103,8 @@ void main()
 	s2.add(13);
 	s2.add(17);
 
-	s3 = s1.chaji(s2);
+	s3 = s1.binji(s2);
+
 	s3.display();
+	return 0;
 }
