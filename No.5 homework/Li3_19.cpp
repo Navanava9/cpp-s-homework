@@ -1,193 +1,196 @@
-#include <iostream>  
+#include <iostream>
 #include <string>
-using namespace std; 
-class Student //类的定义 
+using namespace std;
+class Student
 {
-	int no;           //学生的学号
-	string name;      //学生的姓名
-	float score;      //学生的成绩
-	Student* per;     //当前结点指针 
-	Student* next;    //下一个结点指针 
-	public:  
-		Student();                                 //构造函数
-        Student* find(int i_no);                   //查找指定学号的学生
-		void edit(string i_newname,float i_score); //修改学生的信息
-		void erase();                              //删除指定学号的学生
-		int add(Student* i_newStudent);            //增加学生
-		int getno();                               //获得学生的学号
-		string getname();                          //获得学生的名字
-        float getscore(); 
-		static float sum(Student* root);
-		static float average(Student* root);
-		static int maxno;
-		static int count;
-		static float total;
+	int no;
+	string name;
+	float score;
+	Student *per;
+	Student *next;
 
-};  
+public:
+	Student();
+	Student *find(int i_no);
+	void edit(string i_newname, float i_score);
+	void erase();
+	int add(Student *i_newStudent);
+	int getno();
+	string getname();
+	float getscore();
+	static float sum(Student *root);
+	static float average(Student *root);
+	static int maxno;
+	static int count;
+	static float total;
+};
 
-float Student::sum(Student* root)
+float Student::sum(Student *root)
 {
-	
+
 	return total;
 }
 
-float Student::average(Student* root)
+float Student::average(Student *root)
 {
-	
-	 return total/count;
+
+	return total / count;
 }
 
-Student::Student()                         
+Student::Student()
 {
-	score=0.0;
-	per=NULL;                     
-	next=NULL;                   
+	score = 0.0;
+	per = NULL;
+	next = NULL;
 }
-Student* Student::find(int i_no)  
-{  
-	if(i_no==no)  
-		return this;  
-	if(next!=NULL)  
-		return next->find(i_no); 
-	return NULL;  
-}  
-void Student::edit(string i_name,float i_score)  
-{ 
-	if(i_name=="")  
-		return ;  
-Student::total+=i_score;
-Student::total-=this->getscore();
-	name=i_name; 
-	score=i_score;
-}  
-void Student::erase()  
-{ 
-	if(no<0)  
-		return ; 
+Student *Student::find(int i_no)
+{
+	if (i_no == no)
+		return this;
+	if (next != NULL)
+		return next->find(i_no);
+	return NULL;
+}
+void Student::edit(string i_name, float i_score)
+{
+	if (i_name == "")
+		return;
+	Student::total += i_score;
+	Student::total -= this->getscore();
+	name = i_name;
+	score = i_score;
+}
+void Student::erase()
+{
+	if (no < 0)
+		return;
 	Student::count--;
-	Student::total-=this->score;
-	if(per!=NULL) 
-		per->next=next;  
-	if(next!=NULL)  
-		next->per=per;
-	next=NULL;  
-	per=NULL; 
-}  
-int Student::add(Student* i_newStudent)  
-{ 
-	int no=maxno+1;  
-	while(true)
-	{ 
-		if(NULL==find(no)) 
+	Student::total -= this->score;
+	if (per != NULL)
+		per->next = next;
+	if (next != NULL)
+		next->per = per;
+	next = NULL;
+	per = NULL;
+}
+int Student::add(Student *i_newStudent)
+{
+	int no = maxno + 1;
+	while (true)
+	{
+		if (NULL == find(no))
 			break;
-		no=no+1;
-	}  
-	Student* tmp=this;  
-	while(true){
-		if(tmp->next==NULL)  
-			break;  
-		tmp=tmp->next;  
-		}  
-	tmp->next=i_newStudent;  
-	i_newStudent->next=NULL;  
-	i_newStudent->per=tmp;  
-	i_newStudent->no=no; 
+		no = no + 1;
+	}
+	Student *tmp = this;
+	while (true)
+	{
+		if (tmp->next == NULL)
+			break;
+		tmp = tmp->next;
+	}
+	tmp->next = i_newStudent;
+	i_newStudent->next = NULL;
+	i_newStudent->per = tmp;
+	i_newStudent->no = no;
 	Student::count++;
-	return no;  
+	return no;
 }
 
-int Student::getno(){return no;}
-string Student::getname(){return name;}
-float Student::getscore(){return score;} 
+int Student::getno() { return no; }
+string Student::getname() { return name; }
+float Student::getscore() { return score; }
 
-int Student::maxno=1000;
-int Student::count=0;
-float Student::total=0;
+int Student::maxno = 1000;
+int Student::count = 0;
+float Student::total = 0;
 
-int main( )  
+int main()
 {
-	Student* Studentroot=new Student();
+	Student *Studentroot = new Student();
 	string input1;
 	float input2;
-	Student* tmp=NULL; 
-	while(true){ 
-		cout<<"输入指令：查找(F),增加(A),编辑(E),删除(D),总分(T),平均分(V),退出(Q)"<<endl; 
-		cin>>input1; 
+	Student *tmp = NULL;
+	while (true)
+	{
+		cout << "Please type ur instruction: Find(F), Add(A), Edit(E), Delete(D), Tatol(T), Averager(V), Exit(Q)" << endl;
+		cin >> input1;
 
-		if(("F"==input1)||("f"==input1)) 
-		{ 
-			cout<<"输入学号:"; 
-			int no=-1; 
-			cin>>no;
-			tmp=Studentroot->find(no);
-			if(tmp==NULL) 
-			{ 
-				cout<<"没找到"<<endl; 
-				continue; 
-			}  
-			cout<<"学号:"<<tmp->getno(); 
-			cout<<"  姓名:";  
-			string name;  
-			if((name=tmp->getname())!="") 
-				cout<<name;  
-			else  
-				cout<<"未输入"<<endl;  
-			cout<<" 成绩："<<tmp->getscore()<<endl;
-		} 
-		else if((input1=="A")||(input1=="a")) 
-		{ 
-			cout<<"输入姓名，成绩: ";  
-			cin>>input1>>input2;;  
-			tmp=new Student();  
-			tmp->edit(input1,input2); 
-			cout<<"学号: "<<Studentroot->add(tmp)<<endl; 
-		}  
-		else if((input1=="E")||(input1=="e"))
-		{  
-			cout<<"输入学号:"; 
-			int no=0; 
-			cin>>no;  
-			tmp=Studentroot->find(no);  
-			if(tmp==NULL)  
-				{ 
-				cout<<"空号"<<endl; 
-				continue;  
-				}  
-			cout<<"新姓名,新成绩: "; 
-			cin>>input1>>input2;  
-			tmp->edit(input1,input2);  
-			cout<<"更改成功."<<endl; 
-		}  
-		else if((input1=="D")||(input1=="d")) 
-		{ 
-			cout<<"输入学号:"; 
-			int no=0; 
-			cin>>no; 
-			tmp=Studentroot->find(no); 
+		if (("F" == input1) || ("f" == input1))
+		{
+			cout << "Input Sno:";
+			int no = -1;
+			cin >> no;
+			tmp = Studentroot->find(no);
+			if (tmp == NULL)
+			{
+				cout << "Not find!" << endl;
+				continue;
+			}
+			cout << "Sno:" << tmp->getno();
+			cout << "Sname:";
+			string name;
+			if ((name = tmp->getname()) != "")
+				cout << name;
+			else
+				cout << "No input" << endl;
+			cout << "Score: " << tmp->getscore() << endl;
+		}
+		else if ((input1 == "A") || (input1 == "a"))
+		{
+			cout << "Input Sname,Score: ";
+			cin >> input1 >> input2;
+			;
+			tmp = new Student();
+			tmp->edit(input1, input2);
+			cout << "Sno: " << Studentroot->add(tmp) << endl;
+		}
+		else if ((input1 == "E") || (input1 == "e"))
+		{
+			cout << "Input Sno: ";
+			int no = 0;
+			cin >> no;
+			tmp = Studentroot->find(no);
+			if (tmp == NULL)
+			{
+				cout << "NULL Sno" << endl;
+				continue;
+			}
+			cout << "New Score, new Name:";
+			cin >> input1 >> input2;
+			tmp->edit(input1, input2);
+			cout << "Change success!" << endl;
+		}
+		else if ((input1 == "D") || (input1 == "d"))
+		{
+			cout << "Input Sno:";
+			int no = 0;
+			cin >> no;
+			tmp = Studentroot->find(no);
 			tmp->erase();
-			cout<<"已成功删除"<<endl;
+			cout << "Delete success!" << endl;
 			delete tmp;
 		}
-		
-		else if((input1=="T")||(input1=="t"))
+
+		else if ((input1 == "T") || (input1 == "t"))
 		{
-			cout<<"学生总分为:"<<Student::total<<endl;
+			cout << "Total score:" << Student::total << endl;
 		}
 
-		else if((input1=="v")||(input1=="V"))
+		else if ((input1 == "v") || (input1 == "V"))
 		{
-			cout<<"学生平均分:"<<Student::total/Student::count<<endl;
+			cout << "Average:" << Student::total / Student::count << endl;
 		}
 
-		else if((input1=="Q")||(input1=="q"))
-		{  
-			break;  
+		else if ((input1 == "Q") || (input1 == "q"))
+		{
+			break;
 		}
-		    else 
-			{ 
-				cout<<"输入有误！"<<endl; 
-			}  
-		}  
-	delete Studentroot; 
+		else
+		{
+			cout << "Input wrong!" << endl;
+		}
+	}
+	delete Studentroot;
 	return 0;
-}  
+}
