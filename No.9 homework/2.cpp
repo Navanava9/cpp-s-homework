@@ -93,6 +93,11 @@ bool Rnum::operator==(Rnum c)
         return false;
 }
 
+Rnum Rnum::simplification(Rnum c)
+{
+    
+}
+
 int main(void)
 {
     return 0;
