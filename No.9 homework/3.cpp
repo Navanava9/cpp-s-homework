@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
 
-class A
+class set
 {
+private:
+  
 public:
-    A() {}
-    ~A() {}
+  
 };
+
 
 int main(void)
 {
