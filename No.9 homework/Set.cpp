@@ -4,8 +4,8 @@ using namespace std;
 class Set
 {
 private:
-    int count;
-    int set[10];
+	int count;
+    int set[5];
 
 public:
     Set();
@@ -15,9 +15,10 @@ public:
     Set operator+(Set);
     Set operator-(Set);
     Set operator*(Set);
-    Set operator<<(int);
-    Set operator>>(int);
+    ostream & operator<<(Set);
+    istream & operator>>(Set);
     void operator()(int);
+
 };
 
 Set::Set()
@@ -71,7 +72,7 @@ Set Set::operator-(Set c)
 
 Set Set::operator*(Set c)
 {
-    Set s;
+	Set s;
     for (int i = 0; i < count; i++)
         s(set[i]);
     for (int j = 0; j < count; j++)
@@ -79,12 +80,22 @@ Set Set::operator*(Set c)
     return s;
 }
 
-Set Set::operator<<(int x)
+ostream & Set::operator<<(Set s)
 {
+	ostream & os;
+	for(int i = 0; i < s.count; i++)
+		os << s.set[i];
+    return os;
+
 }
 
-Set Set::operator>>(int x)
+istream & Set::operator>>(Set s)
 {
+	istream & is;
+	for(int i = 0; i < 5; i++)
+		is >> s.set[i];
+	s.count = 5;
+    return is;
 }
 
 void Set::operator()(int x)
@@ -98,5 +109,7 @@ void Set::operator()(int x)
 
 int main(void)
 {
+	Set s1;
+	Set s2;
     return 0;
 }
