@@ -15,9 +15,9 @@ public:
     Set operator+(Set);
     Set operator-(Set);
     Set operator*(Set);
-    ostream &operator<<(Set);
-    istream &operator>>(Set);
     void operator()(int);
+    friend ostream &operator<<(ostream &, Set &);
+    friend istream &operator>>(istream &, Set &);
 };
 
 Set::Set()
@@ -79,23 +79,6 @@ Set Set::operator*(Set c)
     return s;
 }
 
-ostream &Set::operator<<(Set s)
-{
-    ostream &os;
-    for (int i = 0; i < s.count; i++)
-        os << s.set[i];
-    return os;
-}
-
-istream &Set::operator>>(Set s)
-{
-    istream &is;
-    for (int i = 0; i < 5; i++)
-        is >> s.set[i];
-    s.count = 5;
-    return is;
-}
-
 void Set::operator()(int x)
 {
     if (find(x) == -1)
@@ -105,9 +88,29 @@ void Set::operator()(int x)
     }
 }
 
+ostream &operator<<(ostream &os, Set &s)
+{
+    os << "set = { ";
+    for (int i = 0; i < s.count; i++)
+        os << s.set[i] << " ";
+    os << "}";
+    return os;
+}
+
+istream &operator>>(istream &is, Set &s)
+{
+    for (int i = 0; i < 5; i++)
+        is >> s.set[i];
+    s.count = 5;
+    return is;
+}
+
 int main(void)
 {
     Set s1;
     Set s2;
+
+    cin >> s1;
+    cout << s1;
     return 0;
 }
