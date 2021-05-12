@@ -4,7 +4,11 @@ using namespace std;
 class Rnum
 {
 public:
-	Rnum() {numerator = 1; denominator = 1;}
+    Rnum()
+    {
+        numerator = 1;
+        denominator = 1;
+    }
     Rnum(int, int);
     void display(void);
     Rnum operator+(Rnum);
@@ -32,15 +36,15 @@ Rnum::Rnum(int n, int d)
 
 void Rnum::display(void)
 {
-	if(numerator == 0)
-		cout << 0 << endl;
-	else
-		cout << numerator << "/" << denominator << endl;
+    if (numerator == 0)
+        cout << 0 << endl;
+    else
+        cout << numerator << "/" << denominator << endl;
 }
 
 Rnum Rnum::operator+(Rnum c)
 {
-	Rnum temp;
+    Rnum temp;
     temp.denominator = c.denominator * denominator;
     if (temp.denominator == 0)
     {
@@ -48,7 +52,7 @@ Rnum Rnum::operator+(Rnum c)
         exit(0);
     }
     temp.numerator = denominator * c.numerator + numerator * c.denominator;
-	temp.simplification();
+    temp.simplification();
     return temp;
 }
 
@@ -62,7 +66,7 @@ Rnum Rnum::operator-(Rnum c)
         exit(0);
     }
     temp.numerator = numerator * c.denominator - denominator * c.numerator;
-	temp.simplification();
+    temp.simplification();
     return temp;
 }
 
@@ -71,7 +75,7 @@ Rnum Rnum::operator*(Rnum c)
     Rnum temp;
     temp.denominator = denominator * c.denominator;
     temp.numerator = numerator * c.numerator;
-	temp.simplification();
+    temp.simplification();
     return temp;
 }
 
@@ -85,7 +89,7 @@ Rnum Rnum::operator/(Rnum c)
     }
     temp.denominator = denominator * c.numerator;
     temp.numerator = numerator * c.denominator;
-	temp.simplification();
+    temp.simplification();
     return temp;
 }
 
@@ -103,41 +107,41 @@ bool Rnum::operator==(Rnum c)
 
 void Rnum::simplification(void)
 {
-	for(int i = numerator; i > 1; i--)
-	{
-		if(denominator % i == 0 && numerator % i == 0)
-		{
-			denominator /= i;
-			numerator /= i;
-			return;
-		}			
-	}
+    for (int i = numerator; i > 1; i--)
+    {
+        if (denominator % i == 0 && numerator % i == 0)
+        {
+            denominator /= i;
+            numerator /= i;
+            return;
+        }
+    }
 }
 
 int main(void)
 {
-	Rnum r;
-	Rnum r1(1, 2);
-	Rnum r2(2, 3);
-	Rnum r3(4, 6);
-	Rnum r4(0, 3);
+    Rnum r;
+    Rnum r1(1, 2);
+    Rnum r2(2, 3);
+    Rnum r3(4, 6);
+    Rnum r4(0, 3);
 
-	r3.simplification();
-	r3.display();
-	
-	r = r2 * r3;
-	r.display();
+    r3.simplification();
+    r3.display();
 
-	r = r2 + r3;
-	r.display();
+    r = r2 * r3;
+    r.display();
 
-	r = r2 - r3;
-	r.display();
+    r = r2 + r3;
+    r.display();
 
-	cout << "r2 == r3 ? " << (r2 == r3) << endl;
+    r = r2 - r3;
+    r.display();
 
-	r = r2 / r4;
-	r.display();
+    cout << "r2 == r3 ? " << (r2 == r3) << endl;
+
+    r = r2 / r4;
+    r.display();
 
     return 0;
 }
