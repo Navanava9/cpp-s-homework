@@ -10,7 +10,6 @@ public:
         real = r;
         imag = i;
     }
-
     Complex operator+(Complex);
     Complex operator-(Complex);
     Complex operator*(Complex);
